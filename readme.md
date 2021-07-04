@@ -1,52 +1,73 @@
 # Tracer
 
-[![Build Status](https://travis-ci.org/Anduin2017/Tracer.svg?branch=master)](https://travis-ci.org/Anduin2017/Tracer)
+[![Build status](https://dev.azure.com/aiursoft/Star/_apis/build/status/Tracer%20Build)](https://dev.azure.com/aiursoft/Star/_build/latest?definitionId=1)
+![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/aiursoft/Star/1)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Ftracer.aiursoft.com)
 
-Tracer is a simple network speed test app
+Tracer is a simple network speed test app. 
 
-## Requirements
+Tracer is a simple network speed test app. Deploy this on your own server. Open your tracer on your browser. And you can test the speed between you and your server.
+
+## Try
+
+Try a running tracer [here](https://tracer.aiursoft.com).
+
+## Run in Ubuntu
+
+First, specify a domain name for your Ubuntu 18.04+, brand new server.
+
+And execute the following command in the server:
+
+```bash
+$ curl -sL https://github.com/AiursoftWeb/Tracer/raw/master/install.sh | sudo bash -s www.example.com
+```
+
+## Run locally
 
 Requirements about how to run
-* [Windows Server](http://www.microsoft.com/en-us/cloud-platform/windows-server) or [Ubuntu Server](https://www.ubuntu.com/server)
-* [dot net Core 2.0.0 or later](https://github.com/dotnet/core/tree/master/release-notes)
-* [git](https://git-scm.com)
 
-**bower depends on nodejs, npm and git!**
+* [.NET Core runtime 5.0 or later](https://github.com/dotnet/core/tree/master/release-notes)
 
 Requirements about how to develope
-* [Windows 10](http://www.microsoft.com/en-US/windows/) or [Ubuntu desktop](https://www.ubuntu.com/desktop)
-* [dot net Core SDK 2.0.0 or later](https://github.com/dotnet/core/tree/master/release-notes)
-* [git](https://git-scm.com)
+
+* [.NET Core SDK 5.0 or later](https://github.com/dotnet/core/tree/master/release-notes)
 * [VS Code](https://code.visualstudio.com) (Strongly suggest)
 
-## How to run locally
+1. Excute `dotnet restore` to restore all dotnet requirements
+2. Excute `dotnet run` to run the app
+3. Use your browser to view [http://localhost:5000](http://localhost:5000)
 
-1. Excute `bower install` to download all front-end packages
-2. Excute `dotnet restore` to restore all dotnet requirements
-3. Excute `dotnet run` to run the app
-4. Use your browser to view [http://localhost:5000](http://localhost:5000)
+## Run in Microsoft Visual Studio
 
-## How to run in docker
+1. Open the `.sln` file in the project path. 
+2. Press `F5`.
+
+## Run in docker
+
+Pull the container using command:
+
+```bash
+$ docker pull anduin2019/tracer:1.0.0
+$ docker run -d -p 8080:80 anduin2019/tracer:1.0.0
+```
+
+That will start a web server at `http://localhost:8080` and you can test the app.
+
+## How to build locally in docker
 
 Just install docker and docker-compose. Execute the following command.
 
 ```bash
-$ docker-compose build
-$ docker-compose up
+$ docker build -t=tracer .
+$ docker run -d -p 8080:80 tracer
 ```
 
-That will start a web server at `http://localhost:8000` and you can test the app.
+That will start a web server at `http://localhost:8080` and you can test the app.
 
-## How to publish to your server
+## How to contribute
 
-1. Prepare a Linux or Windows Server
-2. Run dotnet publish from your dev environment to package your app into a self-contained directory that can run on your server.
-3. Copy your ASP.NET Core app to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Test your app, for example:
-+ 
-From the command line, run dotnet yourapp.dll
-In a browser, navigate to http://<serveraddress>:<port> to verify you app works on Linux. 
-+ 
+There are many ways to contribute to the project: logging bugs, submitting pull requests, reporting issues, and creating suggestions.
 
-> Note: You can use Yeoman to create a new ASP.NET Core application for a new project.
+Even if you have push rights on the repository, you should create a personal fork and create feature branches there when you need them. This keeps the main repository clean and your personal workflow cruft out of sight.
 
-**When you have successfully published the app to your server, it is not running properly! You need the following setps.**
+We're also interested in your feedback for the future of this project. You can submit a suggestion or feature request through the issue tracker. To make this process more effective, we're asking that these include more information to help define them more clearly.

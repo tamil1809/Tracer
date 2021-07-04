@@ -1,17 +1,11 @@
-FROM node as frontend-env
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as build-env
 WORKDIR /src
+
 COPY . .
-RUN npm i -g bower
-RUN bower install --allow-root
-
-FROM microsoft/aspnetcore-build as build-env
-WORKDIR /src
-
-COPY --from=frontend-env /src .
 RUN dotnet restore
 RUN dotnet publish --no-restore -c Release -o /build
 
-FROM microsoft/aspnetcore
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim
 WORKDIR /app
 COPY --from=build-env /build .
 ENTRYPOINT ["dotnet","./Tracer.dll"]
